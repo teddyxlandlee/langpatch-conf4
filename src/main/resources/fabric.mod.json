@@ -26,6 +26,9 @@
   "breaks": {
     "enchlevel-langpatch": "<1.2"
   },
+  "conflicts": {
+    "eeemod": "<2.1"
+  },
   "provides": [
     "enchlevel-langpatch-config",
     "enchlevel-langpatch-config2",
