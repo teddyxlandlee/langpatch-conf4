@@ -21,14 +21,15 @@ public class PlatformUtil {
         Class<?> c;
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         try {
-            if (getForgeVersion() < 0) {
+            int forgeVersion = getForgeVersion();
+            if (forgeVersion < 0) {
                 c = Class.forName("net.fabricmc.loader.api.FabricLoader");
                 MethodHandle mh = lookup.findStatic(c, "getInstance", MethodType.methodType(c));
                 MethodHandle mh2 = lookup.findVirtual(c, "getConfigDir", MethodType.methodType(Path.class));
 
                 return (Path) mh2.invoke(mh.invoke());
-            } else {
-                c = Class.forName("net.minecraftforge.fml.loading.FMLPaths");
+            } else {    // forgeVersion == 0 -> NeoForge
+                c = Class.forName(forgeVersion == 0 ? "net.neoforged.fml.loading.FMLPaths" : "net.minecraftforge.fml.loading.FMLPaths");
                 MethodHandle mh = lookup.findStaticGetter(c, "CONFIGDIR", c);
                 MethodHandle mh2 = lookup.findVirtual(c, "get", MethodType.methodType(Path.class));
 
@@ -53,7 +54,11 @@ public class PlatformUtil {
             s = s.split("\\.")[0];
             // 36 means 1.16.5, 37 means 1.17.1
             return Integer.parseUnsignedInt(s);
-        } else {    // Still checking if Fabric, otherwise throw
+        } else {    // Still checking if Fabric/Neo, otherwise throw
+            try {
+                Class.forName("net.neoforged.api.distmarker.Dist");
+                return 0;
+            } catch (ClassNotFoundException ignored) {}
             try {
                 Class.forName("net.fabricmc.api.Environment");
             } catch (ClassNotFoundException e) {

@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("idea")
-    id("xland.gradle.forge-init-injector") version "1.0.7"
+    id("xland.gradle.forge-init-injector") version "1.1.1"
 }
 
 group = "xland.mcmod"
@@ -26,11 +26,12 @@ java.targetCompatibility = JavaVersion.VERSION_1_8
 forgeInitInjector {
     modId = "langpatchconf"
     stubPackage = "Eri4cCOS35DHuw2QLQbLZ"
+    neoFlag("post_20_5")    // will not support 1.20.2-4 NeoForge
 }
 
 tasks.processResources {
     inputs.property("version", project.version)
-    filesMatching(setOf("fabric.mod.json", "META-INF/mods.toml")) {
+    filesMatching(setOf("fabric.mod.json", "META-INF/mods.toml", "META-INF/neoforge.mods.toml")) {
         expand("version" to project.version)
     }
 }

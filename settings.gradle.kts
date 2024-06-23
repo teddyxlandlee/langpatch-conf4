@@ -3,7 +3,7 @@ pluginManagement {
         maven("https://maven.aliyun.com/repository/public")
         maven("https://maven.aliyun.com/repository/gradle-plugin")
         maven("https://lss233.littleservice.cn/repositories/minecraft")
-        maven("https://covid-trump.github.io/mvn")
+        maven("https://mvn.7c7.icu")    // the new address for COVID-Trump Maven
     }
 }
 
