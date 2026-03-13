@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("idea")
-    id("xland.gradle.forge-init-injector") version "1.1.1"
+    id("xland.gradle.forge-init-injector") version "1.2.0"
 }
 
 group = "xland.mcmod"
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compileOnly("xland.mcmod:enchlevel-langpatch:2.0.0")
-    compileOnly("org.jetbrains:annotations:19.0.0")
+    compileOnly("org.jetbrains:annotations:26.1.0")
     implementation("com.google.guava:guava:21.0")
     implementation("org.apache.logging.log4j:log4j-api:2.8.1")
 }
