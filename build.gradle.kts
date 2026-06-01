@@ -10,7 +10,7 @@ version = ext["project_version"].toString()
 repositories {
     maven("https://maven.aliyun.com/repository/public")
     maven("https://lss233.littleservice.cn/repositories/minecraft")
-    maven("https://covid-trump.github.io/mvn")
+    maven("https://maven.hixland.com")
 }
 
 dependencies {
